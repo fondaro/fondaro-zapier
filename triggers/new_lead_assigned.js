@@ -1,0 +1,41 @@
+module.exports = {
+  operation: {
+    perform: {
+      headers: { Accept: 'application/json' },
+      url: 'https://api.fondaro.com/zapier/triggers/lead-assignments',
+    },
+    inputFields: [],
+    sample: {
+      id: 1,
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'john@example.com',
+      phoneNumber: '+34600000000',
+      language: 'English',
+      leadGroupName: 'Costa del Sol Buyers',
+      status: 'PURCHASED',
+      assignedAt: '2026-03-06T12:00:00.000Z',
+      createdAt: '2026-03-06T11:00:00.000Z',
+      additionalInfo: {},
+    },
+    outputFields: [
+      { key: 'id', label: 'Lead ID', type: 'integer' },
+      { key: 'firstName', label: 'First Name' },
+      { key: 'lastName', label: 'Last Name' },
+      { key: 'email', label: 'Email' },
+      { key: 'phoneNumber', label: 'Phone Number' },
+      { key: 'language', label: 'Language' },
+      { key: 'leadGroupName', label: 'Lead Group Name' },
+      { key: 'status', label: 'Status' },
+      { key: 'assignedAt', label: 'Assigned At', type: 'datetime' },
+      { key: 'createdAt', label: 'Created At', type: 'datetime' },
+    ],
+  },
+  display: {
+    description: 'Triggers when a new lead has been created.',
+    hidden: false,
+    label: 'New Lead',
+  },
+  key: 'new_lead_assigned',
+  noun: 'Lead',
+};
