@@ -79,6 +79,7 @@ module.exports = {
         type: 'string',
         helpText: 'BCP-47 language code (e.g. en-US, es-ES, da-DK)',
         required: true,
+        default: 'en-GB',
         list: false,
         altersDynamicFields: false,
       },

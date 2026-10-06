@@ -1,6 +1,6 @@
 {
   "name": "fondaro",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Fondaro is a real estate growth platform that delivers exclusive early-stage buyer introductions to partner agencies before competitors.",
   "main": "index.js",
   "scripts": {
