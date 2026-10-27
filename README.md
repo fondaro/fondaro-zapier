@@ -15,7 +15,7 @@
 
 <p align="center">
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue.svg" /></a>
-  <img alt="Zapier platform" src="https://img.shields.io/badge/zapier--platform-18.6-ff4f00.svg" />
+  <img alt="Zapier platform" src="https://img.shields.io/badge/zapier--platform-19.2-ff4f00.svg" />
   <img alt="Node" src="https://img.shields.io/badge/node-%3E%3D22-339933.svg" />
 </p>
 
@@ -23,92 +23,68 @@
 
 ## What you can do
 
-Send new buyer and seller enquiries into Fondaro from your forms, ads and spreadsheets, and push every lead Fondaro assigns to you into the tools your team already uses.
+Start a Zap the moment something happens in your Fondaro CRM, and create, find and update leads, deals, tasks and notes from any other app. Every trigger is instant and hands the Zap the full record, so you rarely need a lookup step.
 
-| | Type | What it does |
+### Triggers (instant)
+
+| Trigger | Starts when | Options |
 |---|---|---|
-| **New Lead** | Trigger | Fires when a lead is assigned to your organization. Gives you the lead's name, email, phone, language, lead plan, status and timestamps. |
-| **Create Lead** | Action | Adds a lead to your Fondaro CRM, with an optional status, owner and tags. |
-| **List Tags** | Hidden trigger | Powers the Tags dropdown on Create Lead. |
+| New Lead | A lead lands in your CRM | Only leads from your lead plans |
+| Lead Status Changed | A lead's status changes | To status |
+| Lead Assigned | A lead is assigned; includes the team members added | Only when assigned to |
+| Lead Tagged / Lead Untagged | A tag is added to or removed from a lead | Only for tags |
+| New Deal | A deal is created | Stage |
+| Deal Stage Changed | A deal moves stage | To stage |
+| Deal Won / Deal Lost | A deal is closed (with its value or reason) | |
+| New Task / Task Completed | A task is created or completed on a lead | |
+| New Note | A note is added to a lead | |
+| Call Logged | A call is recorded on a lead | Outcome, Missed calls only |
+| Call Analyzed | A call's analysis is ready | |
 
-### Create Lead fields
+### Actions
 
-| Field | Required | Notes |
-|---|---|---|
-| First Name | Yes | |
-| Last Name | Yes | |
-| Email | Yes | |
-| Phone Number | Yes | Include the country code, for example `+34612345678`. |
-| Language | Yes | A BCP-47 tag such as `en-GB`, `es-ES` or `da-DK`. Fondaro uses it to route and match the lead. |
-| CRM Status | No | `lead`, `potential`, `bad_timing`, `client` or `unqualified`. |
-| Owner ID | No | The Clerk user ID of the team member to assign the lead to. Leave empty for unassigned. |
-| Tags | No | Pick from your organization's tags. |
+Create Lead, Update Lead Contact, Update Lead Status, Add Lead Assignees, Add Tags to Lead, Create Deal, Change Deal Stage, Close Deal as Won, Close Deal as Lost, Create Task, Create Note.
 
-### New Lead sample
+### Searches
 
-```json
-{
-  "id": 1,
-  "firstName": "John",
-  "lastName": "Doe",
-  "email": "john@example.com",
-  "phoneNumber": "+34600000000",
-  "language": "English",
-  "leadGroupName": "Costa del Sol Buyers",
-  "status": "PURCHASED",
-  "assignedAt": "2026-03-06T12:00:00.000Z",
-  "createdAt": "2026-03-06T11:00:00.000Z",
-  "additionalInfo": {}
-}
-```
+Find Lead, Find Lead by ID, Search Leads, Find Leads, Find Lead Activities, Find Lead Calls, Find Leads by Meaning, Find Leads for a Listing, Find Lead Tags, Find Deal, Find Deals on Lead, Find Team Member, Find Viewing, Find Viewings, and **Find or Create Lead**.
 
-`leadGroupName` is `null` when a lead does not belong to a lead plan.
+The full guide is at [fondaro.com/docs/dashboard/zapier](https://fondaro.com/docs/dashboard/zapier).
 
-## Getting started
+## Upgrading from 2.x
 
-1. Open Zapier and create a Zap.
-2. Search for **Fondaro** and pick a trigger or action.
-3. Connect your account. You sign in with Fondaro and approve access for your organization.
-4. Map your fields and turn the Zap on.
+Version 3.0 connects through Fondaro's own sign-in and the same API the n8n node uses. Zapier cannot move a connection across that change, so:
 
-Need an account? [Start at fondaro.com](https://fondaro.com).
-
-## Example Zaps
-
-- **Google Forms to Fondaro:** every new form response becomes a lead, tagged with the form it came from.
-- **Fondaro to Slack:** post every newly assigned lead to your sales channel.
-- **Fondaro to Google Sheets:** keep a running log of assigned leads for reporting.
-- **Facebook Lead Ads to Fondaro:** add each ad lead to your CRM with the right owner.
+1. Reconnect Fondaro in Zapier (an organization admin approves it).
+2. Rebuild Zaps that used **New Lead Assigned**: use **New Lead** with **Only leads from your lead plans** on. The lead now carries `leadPlanName` (was `leadGroupName`), `crmStatus` (was the raw `status`) and `origin` (was `additionalInfo`).
+3. **Create Lead** now needs a first name plus an email or a phone; pick team members from a list instead of typing an owner ID.
 
 ## How it works
 
-The integration talks to the public Fondaro API under `https://api.fondaro.com/zapier` and authenticates with OAuth 2.0. Access is scoped to the organization you connect. See the [Fondaro docs](https://fondaro.com/docs) for the full API.
+The app calls `https://api.fondaro.com/integrations/v1` with an OAuth 2.0 token (PKCE, the integrations resource, rotating refresh tokens). Triggers are REST hooks: each Zap subscribes to one event, Fondaro sends a signed, id-only delivery, and the app checks the HMAC signature and reads the record with the Zap's own token. Only an organization admin can connect.
 
 ```
-authentication.js          OAuth 2.0 connection
-triggers/new_lead_assigned.js
-triggers/list_tags.js
-creates/create_lead.js
-test/                      Jest tests
+src/index.ts                 the app definition
+src/authentication.ts        OAuth 2.0
+src/lib/                     request helper and errors, signature check, hook factory,
+                             dropdowns, vocabulary, records, inputs, samples, fields
+src/triggers/  src/creates/  src/searches/  src/search-or-creates/
+test/                        Vitest + nock, no network
 ```
 
 ## Development
 
-You need Node 22 or newer and the [Zapier Platform CLI](https://github.com/zapier/zapier-platform/tree/main/packages/cli).
+Node 22 or newer.
 
 ```bash
-npm install -g zapier-platform-cli
-zapier-platform login
-
 npm install
-npm test                     # run the tests
-zapier-platform validate     # check the integration definition
-zapier-platform push         # upload a new private version
+npm test                          # Vitest
+npm run build                     # tsc → dist/
+npx zapier-platform validate      # check the definition
+npx zapier-platform push          # upload a private version (bump version first)
 ```
 
-For local `zapier-platform invoke` runs, put `ACCESS_TOKEN` and `REFRESH_TOKEN` in a `.env` file. It is gitignored and must never be committed. The OAuth client secret is read from the `CLIENT_SECRET` environment variable on Zapier.
-
-Bump `version` in `package.json` before each push.
+`CLIENT_ID` and `CLIENT_SECRET` are environment variables on the Zapier version (`zapier-platform env:set <version> …`), never in this repository. A private dev version may also set `FONDARO_BASE_URL` to reach a development API; released versions never do.
 
 ## Support
 

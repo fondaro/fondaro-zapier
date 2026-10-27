@@ -1,0 +1,7 @@
+[
+  { "name": "New", "value": "lead" },
+  { "name": "Potential", "value": "potential" },
+  { "name": "Bad Timing", "value": "bad_timing" },
+  { "name": "Client", "value": "client" },
+  { "name": "Unqualified", "value": "unqualified" }
+]

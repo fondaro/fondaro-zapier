@@ -1,0 +1,6 @@
+[
+  { "name": "Buyer", "value": "buyer" },
+  { "name": "Seller", "value": "seller" },
+  { "name": "Collaborator", "value": "collaborator" },
+  { "name": "Tenant", "value": "tenant" }
+]

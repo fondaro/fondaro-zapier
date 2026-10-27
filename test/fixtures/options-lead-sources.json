@@ -1,0 +1,11 @@
+[
+  { "name": "Meta", "value": "meta" },
+  { "name": "Google", "value": "google" },
+  { "name": "Client Website", "value": "client_web" },
+  { "name": "Manual", "value": "manual" },
+  { "name": "CSV Import", "value": "csv_import" },
+  { "name": "Zapier", "value": "zapier" },
+  { "name": "JamesEdition", "value": "james_edition" },
+  { "name": "Inmobalia", "value": "inmobalia" },
+  { "name": "n8n", "value": "n8n" }
+]

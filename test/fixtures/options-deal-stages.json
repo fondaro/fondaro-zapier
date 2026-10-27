@@ -1,0 +1,7 @@
+[
+  { "name": "Interested", "value": "qualified" },
+  { "name": "Viewing", "value": "viewing" },
+  { "name": "Offer", "value": "offer" },
+  { "name": "Reserved", "value": "reserved" },
+  { "name": "Under Contract", "value": "under_contract" }
+]
