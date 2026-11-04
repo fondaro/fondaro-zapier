@@ -1,3 +1,8 @@
+## Unreleased
+
+- Describes Fondaro as a network and a CRM for real estate agencies.
+- New Lead's option reads "Only Growth Leads" (was "Only Leads From Your Lead Plans") and the lead's `leadPlanName` field reads "Growth Area" (was "Lead Plan"). Labels only: the field keys are unchanged, so existing Zaps keep working.
+
 ## 3.0.0
 
 - Sign in with your Fondaro account (OAuth). Only an organization admin can connect. Existing 2.x connections need to reconnect.

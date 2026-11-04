@@ -10,7 +10,7 @@
 <h1 align="center">Fondaro for Zapier</h1>
 
 <p align="center">
-  Connect <a href="https://fondaro.com">Fondaro</a>, the CRM for real estate agencies, to the 7,000+ apps on Zapier.
+  Connect <a href="https://fondaro.com">Fondaro</a>, the Fondaro Network and the CRM for real estate agencies, to the 7,000+ apps on Zapier.
 </p>
 
 <p align="center">
@@ -29,7 +29,7 @@ Start a Zap the moment something happens in your Fondaro CRM, and create, find a
 
 | Trigger | Starts when | Options |
 |---|---|---|
-| New Lead | A lead lands in your CRM | Only leads from your lead plans |
+| New Lead | A lead lands in your CRM | Only Growth leads |
 | Lead Status Changed | A lead's status changes | To status |
 | Lead Assigned | A lead is assigned; includes the team members added | Only when assigned to |
 | Lead Tagged / Lead Untagged | A tag is added to or removed from a lead | Only for tags |
@@ -56,7 +56,7 @@ The full guide is at [fondaro.com/docs/dashboard/zapier](https://fondaro.com/doc
 Version 3.0 connects through Fondaro's own sign-in and the same API the n8n node uses. Zapier cannot move a connection across that change, so:
 
 1. Reconnect Fondaro in Zapier (an organization admin approves it).
-2. Rebuild Zaps that used **New Lead Assigned**: use **New Lead** with **Only leads from your lead plans** on. The lead now carries `leadPlanName` (was `leadGroupName`), `crmStatus` (was the raw `status`) and `origin` (was `additionalInfo`).
+2. Rebuild Zaps that used **New Lead Assigned**: use **New Lead** with **Only Growth Leads** on. The lead now carries `leadPlanName` (was `leadGroupName`), `crmStatus` (was the raw `status`) and `origin` (was `additionalInfo`).
 3. **Create Lead** now needs a first name plus an email or a phone; pick team members from a list instead of typing an owner ID.
 
 ## How it works

@@ -37,7 +37,7 @@ describe('new_lead', () => {
     expect(op.type).toBe('hook');
     expect(op.inputFields[0]).toMatchObject({
       key: 'onlyPlanLeads',
-      label: 'Only Leads From Your Lead Plans',
+      label: 'Only Growth Leads',
       type: 'boolean',
     });
   });
