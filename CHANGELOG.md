@@ -1,6 +1,6 @@
 ## Unreleased
 
-- Describes Fondaro as a network and a CRM for real estate agencies.
+- Describes Fondaro by the Fondaro Network and the everyday work, never as "a CRM".
 - New Lead's option reads "Only Growth Leads" (was "Only Leads From Your Lead Plans") and the lead's `leadPlanName` field reads "Growth Area" (was "Lead Plan"). Labels only: the field keys are unchanged, so existing Zaps keep working.
 
 ## 3.0.0

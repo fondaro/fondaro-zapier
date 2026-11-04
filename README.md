@@ -10,7 +10,7 @@
 <h1 align="center">Fondaro for Zapier</h1>
 
 <p align="center">
-  Connect <a href="https://fondaro.com">Fondaro</a>, the Fondaro Network and the CRM for real estate agencies, to the 7,000+ apps on Zapier.
+  Connect <a href="https://fondaro.com">Fondaro</a>, where real estate agencies work their buyers and meet agents at other agencies, to the 7,000+ apps on Zapier.
 </p>
 
 <p align="center">
