@@ -1,6 +1,6 @@
 {
   "name": "fondaro-zapier",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Fondaro: the Fondaro Network and the everyday tools of a real estate agency.",
   "main": "dist/index.js",
   "exports": "./dist/index.js",
