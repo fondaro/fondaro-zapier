@@ -24,7 +24,7 @@ export default defineFondaroHook({
   inputFields: [
     {
       key: 'onlyPlanLeads',
-      label: 'Only Leads From Your Lead Plans',
+      label: 'Only Growth Leads',
       type: 'boolean',
       default: 'false',
       helpText:

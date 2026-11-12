@@ -73,7 +73,7 @@ describe('nested output field labels', () => {
     const fields = nested('lead', 'Lead', leadOutputFields);
     const label = (key: string) => fields.find((f) => f.key === key)?.label;
     expect(label('lead__email')).toBe('Lead Email');
-    expect(label('lead__leadPlanName')).toBe('Lead Plan');
+    expect(label('lead__leadPlanName')).toBe('Lead Growth Area');
     expect(label('lead__id')).toBe('Lead ID');
   });
 });

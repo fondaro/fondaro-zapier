@@ -95,7 +95,7 @@ export const leadOutputFields: PlainOutputField[] = [
   { key: 'source', label: 'Source' },
   { key: 'externalId', label: 'External ID' },
   { key: 'assigneeIds[]', label: 'Team Member IDs' },
-  { key: 'leadPlanName', label: 'Lead Plan' },
+  { key: 'leadPlanName', label: 'Growth Area' },
   { key: 'tags[]id', label: 'Tag IDs' },
   { key: 'tags[]name', label: 'Tag Names' },
   { key: 'totalCalls', label: 'Total Calls', type: 'integer' },
@@ -244,7 +244,7 @@ export const leadSummaryFields: PlainOutputField[] = nested('lead', 'Lead', [
   { key: 'leadType', label: 'Lead Type' },
   { key: 'crmStatus', label: 'CRM Status' },
   { key: 'source', label: 'Source' },
-  { key: 'leadPlanName', label: 'Lead Plan' },
+  { key: 'leadPlanName', label: 'Growth Area' },
   { key: 'assigneeIds[]', label: 'Team Member IDs' },
   { key: 'tags[]name', label: 'Tag Names' },
 ]);

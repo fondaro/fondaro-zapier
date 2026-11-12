@@ -1,7 +1,7 @@
 {
   "name": "fondaro-zapier",
   "version": "3.0.0",
-  "description": "Fondaro is a CRM for real estate agencies.",
+  "description": "Fondaro: the Fondaro Network and the everyday tools of a real estate agency.",
   "main": "dist/index.js",
   "exports": "./dist/index.js",
   "type": "module",

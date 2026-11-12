@@ -39,7 +39,7 @@ export interface FondaroHookConfig {
     bundle: Bundle,
     data: HookData,
   ) => Promise<HookRecord | HookRecord[] | null>;
-  /** Post-hydration filter per record, e.g. "only leads from your lead plans". */
+  /** Post-hydration filter per record, e.g. "only Growth leads". */
   accept?: (record: HookRecord, input: HookInput) => boolean;
   /** Real records for the editor's test step, newest first. At most 3 are used. */
   list: (z: ZObject, bundle: Bundle) => Promise<HookRecord[]>;
