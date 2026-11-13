@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+  ACTIVITY_TYPES,
+  LISTING_SOURCES,
+  VIEWING_KINDS,
+  VIEWING_STATUSES,
   CALL_OUTCOMES,
   CALL_OUTCOME_CHOICES,
   CRM_STATUSES,
@@ -12,14 +16,26 @@ import {
 import { nested, leadOutputFields } from '../src/lib/fields.js';
 import dealStages from './fixtures/options-deal-stages.json' with { type: 'json' };
 import leadStatuses from './fixtures/options-lead-statuses.json' with { type: 'json' };
+import activityTypes from './fixtures/options-activity-types.json' with { type: 'json' };
+import callOutcomes from './fixtures/options-call-outcomes.json' with { type: 'json' };
+import listingSources from './fixtures/options-listing-sources.json' with { type: 'json' };
+import viewingKinds from './fixtures/options-viewing-kinds.json' with { type: 'json' };
+import viewingStatuses from './fixtures/options-viewing-statuses.json' with { type: 'json' };
 import leadTypes from './fixtures/options-lead-types.json' with { type: 'json' };
 
-// The fixtures are derived from integration-options.service.ts and the shared
-// enums, not recorded from dev; the orchestrator re-records them.
+// The fixtures are derived from integration-options.service.ts and the API's
+// constants, not recorded from dev; the orchestrator re-records them.
 describe('vocabulary equals the API options', () => {
   it('CRM statuses', () => expect(CRM_STATUSES).toEqual(leadStatuses));
   it('lead types', () => expect(LEAD_TYPES).toEqual(leadTypes));
   it('deal stages', () => expect(DEAL_STAGES).toEqual(dealStages));
+  it('call outcomes', () => expect(CALL_OUTCOMES).toEqual(callOutcomes));
+  it('activity types', () => expect(ACTIVITY_TYPES).toEqual(activityTypes));
+  it('viewing kinds', () => expect(VIEWING_KINDS).toEqual(viewingKinds));
+  it('viewing statuses', () =>
+    expect(VIEWING_STATUSES).toEqual(viewingStatuses));
+  it('listing sources', () =>
+    expect(LISTING_SOURCES).toEqual(listingSources));
 });
 
 describe('customer words', () => {

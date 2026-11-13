@@ -4,6 +4,7 @@ import type { Bundle, ZObject } from 'zapier-platform-core';
 import { fondaro } from '../lib/api.js';
 import {
   assigneesField,
+  teamsField,
   dealOutputFields,
   leadField,
 } from '../lib/fields.js';
@@ -21,6 +22,7 @@ const perform = async (z: ZObject, bundle: Bundle) => {
       'amount',
       'expectedCloseAt',
       'assigneeIds',
+      'teamIds',
     ]),
   };
   // The currency is the organization's billing currency; the API answers 400
@@ -63,6 +65,7 @@ export default defineCreate({
         type: 'datetime',
       },
       assigneesField({ helpText: 'Who owns the deal.' }),
+      teamsField(),
     ],
     sample: dealSample,
     outputFields: dealOutputFields,

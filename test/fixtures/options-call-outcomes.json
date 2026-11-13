@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Answered",
+    "value": "success"
+  },
+  {
+    "name": "No Answer",
+    "value": "no_answer"
+  },
+  {
+    "name": "Busy",
+    "value": "busy"
+  },
+  {
+    "name": "Failed",
+    "value": "failed"
+  },
+  {
+    "name": "Invalid Number",
+    "value": "invalid_number"
+  },
+  {
+    "name": "Canceled",
+    "value": "canceled"
+  }
+]

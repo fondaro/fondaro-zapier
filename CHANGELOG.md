@@ -1,3 +1,12 @@
+## 3.1.0
+
+- Language is a dropdown on Create Lead and Update Lead Contact: the languages your leads already use first, then the common ones. You can still type or map your own tag.
+- Teams on Create Lead, Add Lead Assignees, Create Deal and Create Task: everyone in the team is added.
+- Find Leads filters by Source, Lead Type and Language.
+- Update Lead Contact can set Source and External ID, so a lead made elsewhere can be found by Find Lead later.
+- Match Leads to Listing: Listing Source is a dropdown.
+- Needs the matching Fondaro API release; don't promote before it is live.
+
 ## 3.0.1
 
 - Describes Fondaro by the Fondaro Network and the everyday work, never as "a CRM".

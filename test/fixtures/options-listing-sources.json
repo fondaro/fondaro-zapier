@@ -1,0 +1,94 @@
+[
+  {
+    "name": "Fondaro MLS",
+    "value": "internal"
+  },
+  {
+    "name": "Resales Online",
+    "value": "resales_online"
+  },
+  {
+    "name": "Zoddak",
+    "value": "zoddak"
+  },
+  {
+    "name": "Inmobalia",
+    "value": "inmobalia"
+  },
+  {
+    "name": "Idealista",
+    "value": "idealista"
+  },
+  {
+    "name": "Rightmove",
+    "value": "rightmove"
+  },
+  {
+    "name": "Immobiliare.it",
+    "value": "immobiliare"
+  },
+  {
+    "name": "ImmoScout24",
+    "value": "immoscout"
+  },
+  {
+    "name": "Funda",
+    "value": "funda"
+  },
+  {
+    "name": "Zoopla",
+    "value": "zoopla"
+  },
+  {
+    "name": "SeLoger",
+    "value": "seloger"
+  },
+  {
+    "name": "Otodom",
+    "value": "otodom"
+  },
+  {
+    "name": "Immowelt",
+    "value": "immowelt"
+  },
+  {
+    "name": "Realtor.com",
+    "value": "realtor"
+  },
+  {
+    "name": "Homes.com",
+    "value": "homes"
+  },
+  {
+    "name": "Trulia",
+    "value": "trulia"
+  },
+  {
+    "name": "Property Finder",
+    "value": "propertyfinder"
+  },
+  {
+    "name": "Dubizzle",
+    "value": "dubizzle"
+  },
+  {
+    "name": "Centris.ca",
+    "value": "centris"
+  },
+  {
+    "name": "LoopNet",
+    "value": "loopnet"
+  },
+  {
+    "name": "Zillow",
+    "value": "zillow"
+  },
+  {
+    "name": "Redfin",
+    "value": "redfin"
+  },
+  {
+    "name": "Bayut",
+    "value": "bayut"
+  }
+]

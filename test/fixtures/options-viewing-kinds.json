@@ -1,0 +1,10 @@
+[
+  {
+    "name": "In Person",
+    "value": "in_person"
+  },
+  {
+    "name": "Virtual",
+    "value": "virtual"
+  }
+]

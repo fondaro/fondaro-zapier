@@ -3,26 +3,9 @@ import type { Bundle, ZObject } from 'zapier-platform-core';
 
 import { fondaro, seg } from '../lib/api.js';
 import { leadField, pageOutputFields } from '../lib/fields.js';
-import { toChoices } from '../lib/vocabulary.js';
+import { ACTIVITY_TYPE_CHOICES } from '../lib/vocabulary.js';
 import { callSample } from '../lib/samples.js';
 import { asNumber } from '../lib/inputs.js';
-
-/** The activity `type` values the API accepts in `types`. */
-const ACTIVITY_TYPE_CHOICES = toChoices([
-  { name: 'Call', value: 'call' },
-  { name: 'Note', value: 'note' },
-  { name: 'Task Created', value: 'task-created' },
-  { name: 'Task Completed', value: 'task-completed' },
-  { name: 'Email', value: 'email' },
-  { name: 'Status Change', value: 'status-change' },
-  { name: 'Deal Stage Change', value: 'deal-stage-change' },
-  { name: 'Deal Won', value: 'deal-won' },
-  { name: 'Deal Lost', value: 'deal-lost' },
-  { name: 'Assignee Change', value: 'assignee-change' },
-  { name: 'Viewing', value: 'viewing' },
-  { name: 'Document Attached', value: 'document-attached' },
-  { name: 'Lead Created', value: 'lead-created' },
-]);
 
 export const findLeadActivitiesSample = {
   id: 48213,

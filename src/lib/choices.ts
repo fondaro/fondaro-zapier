@@ -43,3 +43,9 @@ export const assigneeChoices = choicesFrom('/options/assignees');
 
 /** Lead sources a customer may claim. */
 export const leadSourceChoices = choicesFrom('/options/lead-sources');
+
+/** The organization's teams, bound by id (`teamIds`). Archived teams are excluded by the API. */
+export const teamChoices = choicesFrom('/options/teams');
+
+/** Language tags: the organization's own first, then the common ones. A typed or mapped tag works too. */
+export const languageChoices = choicesFrom('/options/languages');

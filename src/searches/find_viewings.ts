@@ -6,8 +6,7 @@ import { assigneeChoices } from '../lib/choices.js';
 import { lineItemFields, pageOutputFields, viewingOutputFields } from '../lib/fields.js';
 import { viewingSample } from '../lib/samples.js';
 import { asNumber } from '../lib/inputs.js';
-
-const choice = (value: string, label: string) => ({ value, sample: value, label });
+import { VIEWING_KIND_CHOICES, VIEWING_STATUS_CHOICES } from '../lib/vocabulary.js';
 
 export const findViewingsSample = {
   id: 'offset-0',
@@ -101,18 +100,13 @@ export default defineSearch({
         key: 'status',
         label: 'Status',
         type: 'string',
-        choices: [
-          choice('scheduled', 'Scheduled'),
-          choice('completed', 'Completed'),
-          choice('cancelled', 'Cancelled'),
-          choice('no_show', 'No Show'),
-        ],
+        choices: VIEWING_STATUS_CHOICES,
       },
       {
         key: 'kind',
         label: 'Kind',
         type: 'string',
-        choices: [choice('in_person', 'In Person'), choice('virtual', 'Virtual')],
+        choices: VIEWING_KIND_CHOICES,
       },
       {
         key: 'from',

@@ -34,6 +34,14 @@ describe('add_lead_assignees', () => {
 
   it('has a sample that matches its output fields', sampleHasOutputFields);
 
+  it('sends teamIds alone, so a team can be added without people', async () => {
+    const scope = nock(BASE)
+      .post(`${API}/leads/12/assignees`, { teamIds: ['team-1'] })
+      .reply(201, { ...op.sample });
+    await run({ leadId: 12, teamIds: ['team-1'] });
+    expect(scope.isDone()).toBe(true);
+  });
+
   it('posts userIds and keeps added and removed', async () => {
     const reply = { ...op.sample, added: ['user_b'], removed: [] };
     const scope = nock(BASE).post(`${API}/leads/12/assignees`, { userIds: ['user_b'] }).reply(201, reply);

@@ -5,6 +5,7 @@ import { fondaro } from '../lib/api.js';
 import { lineItemFields, matchOutputFields } from '../lib/fields.js';
 import { matchSample } from '../lib/samples.js';
 import { asNumber, filled } from '../lib/inputs.js';
+import { LISTING_SOURCE_CHOICES } from '../lib/vocabulary.js';
 
 export const matchLeadsSample = {
   id: '5c9a7e21-4d38-4b60-8f12-a3e6d0b9c847',
@@ -83,6 +84,7 @@ export default defineSearch({
         key: 'listingSource',
         label: 'Listing Source',
         type: 'string',
+        choices: LISTING_SOURCE_CHOICES,
         helpText: 'For a listing from another source, with its ID.',
       },
       { key: 'listingId', label: 'Listing Reference', type: 'string' },

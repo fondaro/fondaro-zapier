@@ -4,6 +4,7 @@ import type { Bundle, ZObject } from 'zapier-platform-core';
 import { fondaro, seg } from '../lib/api.js';
 import {
   assigneesField,
+  teamsField,
   leadField,
   taskOutputFields,
 } from '../lib/fields.js';
@@ -23,6 +24,7 @@ const perform = async (z: ZObject, bundle: Bundle) => {
         'description',
         'dueDate',
         'assigneeIds',
+        'teamIds',
       ]),
       subject: `Lead ${String(input.leadId)}`,
     },
@@ -47,6 +49,7 @@ export default defineCreate({
       assigneesField({
         helpText: 'Who should do it. Leave empty to leave the task unassigned.',
       }),
+      teamsField(),
     ],
     sample: taskSample,
     outputFields: taskOutputFields,

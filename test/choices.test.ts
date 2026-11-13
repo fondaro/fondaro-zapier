@@ -3,8 +3,10 @@ import { describe, expect, it } from 'vitest';
 
 import {
   assigneeChoices,
+  languageChoices,
   leadSourceChoices,
   tagChoices,
+  teamChoices,
 } from '../src/lib/choices.js';
 import { assigneesField, tagsField } from '../src/lib/fields.js';
 import { API, BASE, rejection, run } from './helpers.js';
@@ -67,5 +69,22 @@ describe('function dropdowns', () => {
     expect((tagsField().choices as any).perform).toBe(tagChoices);
     expect((assigneesField().choices as any).perform).toBe(assigneeChoices);
     expect(tagsField().list).toBe(true);
+  });
+
+  it('maps teams (by id) and languages', async () => {
+    nock(BASE)
+      .get(`${API}/options/teams`)
+      .reply(200, [{ name: 'Marbella', value: 'team-1' }]);
+    nock(BASE)
+      .get(`${API}/options/languages`)
+      .reply(200, [{ name: 'Spanish (Spain) · es-ES', value: 'es-ES' }]);
+    expect(await run(teamChoices)).toEqual({
+      results: [{ id: 'team-1', label: 'Marbella' }],
+      paging_token: null,
+    });
+    expect(await run(languageChoices)).toEqual({
+      results: [{ id: 'es-ES', label: 'Spanish (Spain) · es-ES' }],
+      paging_token: null,
+    });
   });
 });

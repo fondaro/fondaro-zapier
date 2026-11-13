@@ -3,7 +3,13 @@ import type { Bundle, ZObject } from 'zapier-platform-core';
 
 import { fondaro } from '../lib/api.js';
 import { choicesFrom, leadSourceChoices } from '../lib/choices.js';
-import { assigneesField, leadOutputFields, tagsField } from '../lib/fields.js';
+import {
+  assigneesField,
+  languageField,
+  leadOutputFields,
+  tagsField,
+  teamsField,
+} from '../lib/fields.js';
 import { leadSample } from '../lib/samples.js';
 import { CRM_STATUS_CHOICES, LEAD_TYPE_CHOICES } from '../lib/vocabulary.js';
 import { filled } from '../lib/inputs.js';
@@ -27,6 +33,7 @@ const perform = async (z: ZObject, bundle: Bundle) => {
     'source',
     'externalId',
     'assigneeIds',
+    'teamIds',
     'tags',
   ]) {
     if (filled(input[key])) body[key] = input[key];
@@ -65,14 +72,11 @@ export default defineCreate({
         type: 'string',
         helpText: 'Start with the country code, for example +34612345678.',
       },
-      {
-        key: 'language',
-        label: 'Language',
-        type: 'string',
+      languageField({
         default: 'en-GB',
         helpText:
-          'A language tag such as en-GB, es-ES or sv-SE. Used for routing and reports.',
-      },
+          'A language tag such as en-GB, es-ES or sv-SE. Used for routing and reports. Pick one or map your own.',
+      }),
       {
         key: 'leadType',
         label: 'Lead Type',
@@ -104,6 +108,7 @@ export default defineCreate({
         helpText:
           'Who owns the lead. Leave empty to let your lead routing decide.',
       }),
+      teamsField(),
       {
         key: 'unassigned',
         label: 'Unassigned',

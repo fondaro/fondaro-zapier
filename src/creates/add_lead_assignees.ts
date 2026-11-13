@@ -4,10 +4,12 @@ import type { Bundle, ZObject } from 'zapier-platform-core';
 import { fondaro, seg } from '../lib/api.js';
 import {
   assigneesField,
+  teamsField,
   leadField,
   leadOutputFields,
 } from '../lib/fields.js';
 import { leadSample } from '../lib/samples.js';
+import { pickFilled } from '../lib/inputs.js';
 
 export const addLeadAssigneesSample = {
   ...leadSample,
@@ -23,7 +25,10 @@ const perform = async (z: ZObject, bundle: Bundle) => {
     'POST',
     `/leads/${seg(input.leadId as string | number)}/assignees`,
     {
-      body: { userIds: input.assigneeIds },
+      body: pickFilled(
+        { userIds: input.assigneeIds, teamIds: input.teamIds },
+        ['userIds', 'teamIds'],
+      ),
       subject: `Lead ${String(input.leadId)}`,
     },
   );
@@ -42,9 +47,10 @@ export default defineCreate({
     inputFields: [
       leadField(),
       assigneesField({
-        required: true,
-        helpText: 'Who to add. Anyone already assigned stays assigned.',
+        helpText:
+          'Who to add. Anyone already assigned stays assigned. Add team members, teams or both.',
       }),
+      teamsField(),
     ],
     sample: addLeadAssigneesSample,
     outputFields: [

@@ -2,7 +2,8 @@ import { defineCreate } from 'zapier-platform-core';
 import type { Bundle, ZObject } from 'zapier-platform-core';
 
 import { fondaro, seg } from '../lib/api.js';
-import { leadField, leadOutputFields } from '../lib/fields.js';
+import { languageField, leadField, leadOutputFields } from '../lib/fields.js';
+import { leadSourceChoices } from '../lib/choices.js';
 import { leadSample } from '../lib/samples.js';
 import { LEAD_TYPE_CHOICES } from '../lib/vocabulary.js';
 import { pickFilled } from '../lib/inputs.js';
@@ -17,6 +18,8 @@ const perform = async (z: ZObject, bundle: Bundle) => {
     'leadType',
     'companyName',
     'language',
+    'source',
+    'externalId',
   ]);
   return fondaro<Record<string, unknown>>(
     z,
@@ -33,7 +36,7 @@ export default defineCreate({
   display: {
     label: 'Update Lead Contact',
     description:
-      "Changes a lead's name, email, phone number, type, company or language. Only the fields you fill in are changed.",
+      "Changes a lead's name, email, phone number, type, company, language, source or external ID. Only the fields you fill in are changed.",
   },
   operation: {
     perform,
@@ -55,11 +58,20 @@ export default defineCreate({
         choices: LEAD_TYPE_CHOICES,
       },
       { key: 'companyName', label: 'Company', type: 'string' },
+      languageField(),
       {
-        key: 'language',
-        label: 'Language',
+        key: 'source',
+        label: 'Source',
         type: 'string',
-        helpText: 'A language tag such as en-GB, es-ES or sv-SE.',
+        choices: { perform: leadSourceChoices },
+        helpText: 'Where the lead came from. Leave empty to keep it.',
+      },
+      {
+        key: 'externalId',
+        label: 'External ID',
+        type: 'string',
+        helpText:
+          'Your own ID for this lead, so Find Lead can look it up later. Leave empty to keep it.',
       },
     ],
     sample: leadSample,

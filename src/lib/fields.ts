@@ -1,6 +1,11 @@
 import type { PlainInputField, PlainOutputField } from 'zapier-platform-core';
 
-import { assigneeChoices, tagChoices } from './choices.js';
+import {
+  assigneeChoices,
+  languageChoices,
+  tagChoices,
+  teamChoices,
+} from './choices.js';
 
 // ── Input fields ────────────────────────────────────────────────────────────
 
@@ -51,6 +56,31 @@ export const assigneesField = (
   type: 'string',
   list: true,
   choices: { perform: assigneeChoices },
+  ...overrides,
+});
+
+/** Teams by id from `/options/teams`; everyone in a chosen team is added. */
+export const teamsField = (
+  overrides: Partial<PlainInputField> = {},
+): PlainInputField => ({
+  key: 'teamIds',
+  label: 'Teams',
+  type: 'string',
+  list: true,
+  choices: { perform: teamChoices },
+  helpText: 'Everyone in the team is added.',
+  ...overrides,
+});
+
+/** A BCP-47 language tag: pick one, or type or map your own. */
+export const languageField = (
+  overrides: Partial<PlainInputField> = {},
+): PlainInputField => ({
+  key: 'language',
+  label: 'Language',
+  type: 'string',
+  choices: { perform: languageChoices },
+  helpText: 'A language tag such as en-GB, es-ES or sv-SE. Pick one or map your own.',
   ...overrides,
 });
 

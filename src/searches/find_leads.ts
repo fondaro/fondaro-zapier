@@ -3,9 +3,15 @@ import type { Bundle, ZObject } from 'zapier-platform-core';
 
 import { fondaro } from '../lib/api.js';
 import { tagChoices, assigneeChoices } from '../lib/choices.js';
-import { leadOutputFields, lineItemFields, pageOutputFields } from '../lib/fields.js';
+import {
+  languageField,
+  leadOutputFields,
+  lineItemFields,
+  pageOutputFields,
+} from '../lib/fields.js';
 import { leadSample } from '../lib/samples.js';
-import { CRM_STATUS_CHOICES } from '../lib/vocabulary.js';
+import { CRM_STATUS_CHOICES, LEAD_TYPE_CHOICES } from '../lib/vocabulary.js';
+import { leadSourceChoices } from '../lib/choices.js';
 import { asNumber, ticked } from '../lib/inputs.js';
 
 export const findLeadsSample = {
@@ -28,6 +34,9 @@ const perform = async (z: ZObject, bundle: Bundle) => {
       tags: input.tags,
       crmStatus: input.crmStatus,
       assigneeId: input.assigneeId,
+      source: input.source,
+      leadType: input.leadType,
+      language: input.language,
       unassigned: ticked(input.unassigned) ? true : undefined,
       limit: input.limit === undefined ? undefined : asNumber(input.limit, 50),
       offset: input.offset === undefined ? undefined : offset,
@@ -51,7 +60,7 @@ export default defineSearch({
   display: {
     label: 'Find Leads',
     description:
-      'Finds a page of leads, newest first, filtered by tags, CRM status or team member. Returns them as line items.',
+      'Finds a page of leads, newest first, filtered by tags, CRM status, source, type, language or team member. Returns them as line items.',
     // Hidden in 3.0: Zapier's publish checks need a live multi-step Zap per
     // visible search, which the free plan can't publish. Unhide in a later version.
     hidden: true,
@@ -73,6 +82,22 @@ export default defineSearch({
         type: 'string',
         choices: CRM_STATUS_CHOICES,
       },
+      {
+        key: 'source',
+        label: 'Source',
+        type: 'string',
+        choices: { perform: leadSourceChoices },
+        helpText: 'Leads from this source.',
+      },
+      {
+        key: 'leadType',
+        label: 'Lead Type',
+        type: 'string',
+        choices: LEAD_TYPE_CHOICES,
+      },
+      languageField({
+        helpText: 'Leads with this language tag, for example es-ES. Pick one or map your own.',
+      }),
       {
         key: 'assigneeId',
         label: 'Team Member',

@@ -1,0 +1,54 @@
+[
+  {
+    "name": "Call",
+    "value": "call"
+  },
+  {
+    "name": "Note",
+    "value": "note"
+  },
+  {
+    "name": "Task Created",
+    "value": "task-created"
+  },
+  {
+    "name": "Task Completed",
+    "value": "task-completed"
+  },
+  {
+    "name": "Email",
+    "value": "email"
+  },
+  {
+    "name": "Status Change",
+    "value": "status-change"
+  },
+  {
+    "name": "Deal Stage Change",
+    "value": "deal-stage-change"
+  },
+  {
+    "name": "Deal Won",
+    "value": "deal-won"
+  },
+  {
+    "name": "Deal Lost",
+    "value": "deal-lost"
+  },
+  {
+    "name": "Assignee Change",
+    "value": "assignee-change"
+  },
+  {
+    "name": "Viewing",
+    "value": "viewing"
+  },
+  {
+    "name": "Document Attached",
+    "value": "document-attached"
+  },
+  {
+    "name": "Lead Created",
+    "value": "lead-created"
+  }
+]
